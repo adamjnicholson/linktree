@@ -1,4 +1,5 @@
 import React from "react";
+import ThemeBox from "../lib/ThemeBox";
 
 const links = [
 	{
@@ -27,29 +28,17 @@ const links = [
 	},
 ];
 
-type Props = {
-	theme: {
-		backgroundColor: string;
-		color: string;
-	};
-};
-
-const Classic = ({ theme }: Props) => {
+const Classic = () => {
 	return (
 		<>
 			{links.map((link) => (
 				<a
-					style={{
-						backgroundColor: theme.backgroundColor,
-						color: theme.color,
-					}}
 					key={link.id}
 					href={`${link.link}#${link.id}`}
 					target="_blank"
 					rel="noreferrer"
-					className="my-2 py-4 px-8 rounded-md leading-relaxed text-center filter hover:invert"
 				>
-					{link.label}
+					<ThemeBox>{link.label}</ThemeBox>
 				</a>
 			))}
 		</>
