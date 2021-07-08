@@ -5,7 +5,7 @@ module.exports = {
 		extend: {},
 	},
 	variants: {
-		// todo add specific fonts
+		// @todo add specific fonts
 		extend: {
 			invert: ["hover"],
 		},

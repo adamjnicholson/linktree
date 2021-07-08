@@ -4,6 +4,7 @@ import linktreeLogo from "./assets/logo.svg";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Classic from "./routes/Classic";
 import ThemeProvider from "./hooks/useTheme";
+import Shows from "./routes/Shows";
 
 function App() {
 	return (
@@ -18,6 +19,9 @@ function App() {
 						<Switch>
 							<Route path="/" exact>
 								<Classic />
+							</Route>
+							<Route path="/shows" exact>
+								<Shows />
 							</Route>
 						</Switch>
 					</Router>

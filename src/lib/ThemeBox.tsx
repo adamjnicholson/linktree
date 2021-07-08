@@ -14,7 +14,7 @@ const ThemeBox = ({ children, className = "" }: Props) => {
 				backgroundColor: theme.backgroundColor,
 				color: theme.color,
 			}}
-			className={`my-2 py-4 px-8 rounded-md leading-relaxed text-center filter hover:invert ${className}`}
+			className={`py-4 px-8 rounded-md leading-relaxed text-center filter hover:invert ${className}`}
 		>
 			{children}
 		</div>

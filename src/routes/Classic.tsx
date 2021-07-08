@@ -5,25 +5,26 @@ const links = [
 	{
 		id: 1,
 		type: "classic",
-		link: "https://linktr.ee/",
+		// @todo better key name than links
+		links: [{ id: 1, link: "https://linktr.ee/" }],
 		label: "48H",
 	},
 	{
 		id: 2,
 		type: "classic",
-		link: "https://linktr.ee/",
+		links: [{ id: 1, link: "https://linktr.ee/" }],
 		label: "48H",
 	},
 	{
 		id: 3,
 		type: "classic",
-		link: "https://linktr.ee/",
+		links: [{ id: 1, link: "https://linktr.ee/" }],
 		label: "48H",
 	},
 	{
 		id: 4,
 		type: "classic",
-		link: "https://linktr.ee/",
+		links: [{ id: 1, link: "https://linktr.ee/" }],
 		label: "48H",
 	},
 ];
@@ -34,9 +35,10 @@ const Classic = () => {
 			{links.map((link) => (
 				<a
 					key={link.id}
-					href={`${link.link}#${link.id}`}
+					href={`${link.links[0].link}#${link.id}-${link.links[0].id}`}
 					target="_blank"
 					rel="noreferrer"
+					className="my-2"
 				>
 					<ThemeBox>{link.label}</ThemeBox>
 				</a>
