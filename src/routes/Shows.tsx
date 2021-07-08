@@ -55,8 +55,8 @@ const show = {
 
 const links = [
 	show,
-	{ ...show, label: "Super Tour" },
-	{ ...show, label: "Regional Tour" },
+	{ ...show, id: 2, label: "Super Tour" },
+	{ ...show, id: 3, label: "Regional Tour" },
 ];
 
 type ShowDetailsProps = {
@@ -71,7 +71,7 @@ type ShowDetailsProps = {
 
 const ShowDetails = ({ show }: ShowDetailsProps) => {
 	return (
-		<div className="  py-4 flex items-center border-b-2">
+		<div className="py-4 flex items-center border-b-2">
 			<div className=" py-4 flex-grow">
 				<h3>{show.date}</h3>
 				<small className="text-sm">{show.location}</small>
@@ -99,41 +99,34 @@ const Shows = () => {
 				{links.map((link) => {
 					return (
 						<AccordionItem key={link.id} className="mb-8">
-							<div>
-								<AccordionButton className="w-full">
-									<ThemeBox>{link.label}</ThemeBox>
-								</AccordionButton>
-								<AccordionPanel>
-									<div className="bg-gray-100 px-4 rounded-b-lg max-h-96 overflow-y-scroll">
-										{link.links.map((show) => {
-											return show.status ===
-												"sold out" ? (
+							<AccordionButton className="w-full">
+								<ThemeBox>{link.label}</ThemeBox>
+							</AccordionButton>
+							<AccordionPanel>
+								<div className="bg-gray-100 px-4 rounded-b-lg max-h-96 overflow-y-scroll">
+									{link.links.map((show) => {
+										return show.status === "sold out" ? (
+											<ShowDetails
+												key={`${link.id}-${show.id}`}
+												show={show}
+											/>
+										) : (
+											<a
+												key={`${link.id}-${show.id}`}
+												href={show.link}
+												target="_blank"
+												rel="noreferrer"
+												className="block"
+											>
 												<ShowDetails
 													key={`${link.id}-${show.id}`}
 													show={show}
 												/>
-											) : (
-												<a
-													href={show.link}
-													target="_blank"
-													rel="noreferrer"
-												>
-													<ShowDetails
-														key={`${link.id}-${show.id}`}
-														show={show}
-													/>
-												</a>
-											);
-										})}
-										<div className="py-4 flex justify-center">
-											<img
-												src={SongkickWordmark}
-												alt="songkick logo"
-											/>
-										</div>
-									</div>
-								</AccordionPanel>
-							</div>
+											</a>
+										);
+									})}
+								</div>
+							</AccordionPanel>
 						</AccordionItem>
 					);
 				})}
