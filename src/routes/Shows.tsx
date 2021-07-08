@@ -1,7 +1,15 @@
 import React from "react";
+import {
+	Accordion,
+	AccordionItem,
+	AccordionButton,
+	AccordionPanel,
+} from "@reach/accordion";
+import "@reach/accordion/styles.css";
 import ThemeBox from "../lib/ThemeBox";
 import ArrowIcon from "../assets/icons/arrow.svg";
 import SongkickWordmark from "../assets/icons/by-songkick-wordmark.svg";
+
 const show = {
 	id: 1,
 	type: "show",
@@ -84,42 +92,52 @@ const ShowDetails = ({ show }: ShowDetailsProps) => {
 };
 
 const Shows = () => {
+	// @todo add accordion animation
 	return (
 		<>
-			{links.map((link) => {
-				return (
-					<div key={link.id} className="mb-8">
-						<ThemeBox>{link.label}</ThemeBox>
-						<div className="bg-gray-100 px-4 rounded-b-lg max-h-96 overflow-y-scroll">
-							{link.links.map((show) => {
-								return show.status === "sold out" ? (
-									<ShowDetails
-										key={`${link.id}-${show.id}`}
-										show={show}
-									/>
-								) : (
-									<a
-										href={show.link}
-										target="_blank"
-										rel="noreferrer"
-									>
-										<ShowDetails
-											key={`${link.id}-${show.id}`}
-											show={show}
-										/>
-									</a>
-								);
-							})}
-							<div className="py-4 flex justify-center">
-								<img
-									src={SongkickWordmark}
-									alt="songkick logo"
-								/>
+			<Accordion collapsible>
+				{links.map((link) => {
+					return (
+						<AccordionItem key={link.id} className="mb-8">
+							<div>
+								<AccordionButton className="w-full">
+									<ThemeBox>{link.label}</ThemeBox>
+								</AccordionButton>
+								<AccordionPanel>
+									<div className="bg-gray-100 px-4 rounded-b-lg max-h-96 overflow-y-scroll">
+										{link.links.map((show) => {
+											return show.status ===
+												"sold out" ? (
+												<ShowDetails
+													key={`${link.id}-${show.id}`}
+													show={show}
+												/>
+											) : (
+												<a
+													href={show.link}
+													target="_blank"
+													rel="noreferrer"
+												>
+													<ShowDetails
+														key={`${link.id}-${show.id}`}
+														show={show}
+													/>
+												</a>
+											);
+										})}
+										<div className="py-4 flex justify-center">
+											<img
+												src={SongkickWordmark}
+												alt="songkick logo"
+											/>
+										</div>
+									</div>
+								</AccordionPanel>
 							</div>
-						</div>
-					</div>
-				);
-			})}
+						</AccordionItem>
+					);
+				})}
+			</Accordion>
 		</>
 	);
 };
