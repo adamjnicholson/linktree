@@ -125,6 +125,12 @@ const Shows = () => {
 											</a>
 										);
 									})}
+									<div className="py-4 flex justify-center">
+										<img
+											src={SongkickWordmark}
+											alt="songkick logo"
+										/>
+									</div>
 								</div>
 							</AccordionPanel>
 						</AccordionItem>

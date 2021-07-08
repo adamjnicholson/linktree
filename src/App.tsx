@@ -1,10 +1,37 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import profilePicture from "./assets/profile-picture.png";
 import linktreeLogo from "./assets/logo.svg";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	NavLink,
+} from "react-router-dom";
 import Classic from "./routes/Classic";
-import ThemeProvider from "./hooks/useTheme";
+import ThemeProvider, { useTheme } from "./hooks/useTheme";
 import Shows from "./routes/Shows";
+
+const MenuItem = ({ children }: PropsWithChildren<{}>) => {
+	return <li className="px-2">{children}</li>;
+};
+
+const MenuLink = (props: Parameters<typeof NavLink>[0]) => {
+	const theme = useTheme();
+
+	return (
+		<NavLink
+			style={{
+				color: theme.backgroundColor,
+			}}
+			className="filter hover:invert"
+			activeStyle={{
+				borderColor: theme.backgroundColor,
+			}}
+			activeClassName="invert border-b-2"
+			{...props}
+		/>
+	);
+};
 
 function App() {
 	return (
@@ -16,6 +43,20 @@ function App() {
 			<main className="flex flex-col max-w-sm mx-auto">
 				<ThemeProvider>
 					<Router>
+						<nav className="mb-8">
+							<ul className="flex justify-center">
+								<MenuItem>
+									<MenuLink to="/" exact>
+										Home
+									</MenuLink>
+								</MenuItem>
+								<MenuItem>
+									<MenuLink to="/shows" exact>
+										Shows
+									</MenuLink>
+								</MenuItem>
+							</ul>
+						</nav>
 						<Switch>
 							<Route path="/" exact>
 								<Classic />
