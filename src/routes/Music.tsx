@@ -40,7 +40,7 @@ const link = {
 		},
 		{
 			id: 3,
-			name: "Soundclourd",
+			name: "Soundcloud",
 			icon: "soundcloud",
 			link: "https://soundcloud.com/",
 		},
@@ -50,7 +50,7 @@ const link = {
 const links = [
 	link,
 	{ ...link, id: 2, label: "Happy Song" },
-	{ ...link, id: 2, label: "Metal Song" },
+	{ ...link, id: 3, label: "Metal Song" },
 ];
 
 const Music = () => {
@@ -75,7 +75,7 @@ const Music = () => {
 												/>
 											</button>
 										</DialogButton>
-										<DialogContent>
+										<DialogContent aria-label="music player">
 											<div>Music Player</div>
 										</DialogContent>
 									</Dialog>

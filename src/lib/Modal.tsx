@@ -26,11 +26,15 @@ const CustomDialog = ({ children }: PropsWithChildren<{}>) => {
 	);
 };
 
-export const DialogContent = ({ children }: PropsWithChildren<{}>) => {
+export const DialogContent = ({
+	children,
+	// @todo figure out the proper type
+	...props
+}: PropsWithChildren<{}>) => {
 	const [isOpen, setIsOpen] = useDialog();
 
 	return (
-		<Dialog isOpen={isOpen} onDismiss={() => setIsOpen(false)}>
+		<Dialog isOpen={isOpen} onDismiss={() => setIsOpen(false)} {...props}>
 			{children}
 		</Dialog>
 	);
