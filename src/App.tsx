@@ -10,6 +10,7 @@ import {
 import Classic from "./routes/Classic";
 import ThemeProvider, { useTheme } from "./hooks/useTheme";
 import Shows from "./routes/Shows";
+import Music from "./routes/Music";
 
 const MenuItem = ({ children }: PropsWithChildren<{}>) => {
 	return <li className="px-2">{children}</li>;
@@ -55,6 +56,11 @@ function App() {
 										Shows
 									</MenuLink>
 								</MenuItem>
+								<MenuItem>
+									<MenuLink to="/music" exact>
+										Music
+									</MenuLink>
+								</MenuItem>
 							</ul>
 						</nav>
 						<Switch>
@@ -63,6 +69,9 @@ function App() {
 							</Route>
 							<Route path="/shows" exact>
 								<Shows />
+							</Route>
+							<Route path="/music" exact>
+								<Music />
 							</Route>
 						</Switch>
 					</Router>
