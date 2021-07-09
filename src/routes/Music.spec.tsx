@@ -16,11 +16,12 @@ it("should render the platforms the music can be streamed on", async () => {
 
 	userEvent.click(screen.getByText(/summer song/i));
 
-	const spotifyLink = await screen.findByRole("link", {
-		name: /spotify logo spotify right facing arrow/i,
-	});
+	expect(
+		await screen.findByRole("link", {
+			name: /spotify logo spotify right facing arrow/i,
+		})
+	).toBeInTheDocument();
 
-	expect(spotifyLink).toBeInTheDocument();
 	expect(
 		screen.getByRole("link", {
 			name: /apple music logo apple music right facing arrow/i,
@@ -43,8 +44,7 @@ it("should open the music player modal when the play button is clicked and then 
 
 	userEvent.click(screen.getByRole("button", { name: /play icon/i }));
 
-	const musicPlayer = await screen.findByText(/music player/i);
-	expect(musicPlayer).toBeInTheDocument();
+	expect(await screen.findByText(/music player/i)).toBeInTheDocument();
 
 	userEvent.click(baseElement.querySelector("[data-reach-dialog-overlay]")!);
 	expect(screen.queryByText(/music player/i)).not.toBeInTheDocument();

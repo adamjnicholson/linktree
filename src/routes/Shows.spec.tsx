@@ -28,8 +28,9 @@ it("should display the shows for the tour when the tour name is clicked", async 
 
 	userEvent.click(screen.getByText(/first tour/i));
 
-	const show = await screen.findByRole("link", {
-		name: FIRST_SHOW_NAME,
-	});
-	expect(show).toBeInTheDocument();
+	expect(
+		await screen.findByRole("link", {
+			name: FIRST_SHOW_NAME,
+		})
+	).toBeInTheDocument();
 });

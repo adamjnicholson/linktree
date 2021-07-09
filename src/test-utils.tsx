@@ -1,17 +1,24 @@
 import React, { PropsWithChildren } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import ThemeProvider from "./hooks/useTheme";
+import { MemoryRouter } from "react-router-dom";
 
-type Props = PropsWithChildren<{}>;
-
-const AllProviders = ({ children }: Props) => {
-	return <ThemeProvider>{children}</ThemeProvider>;
-};
+type Options = {
+	route: string;
+} & RenderOptions;
 
 const customRender = (
 	ui: React.ReactElement,
-	options?: Omit<RenderOptions, "queries" | "wrapper">
-) => render(ui, { wrapper: AllProviders, ...options });
+	{ route, ...options }: Options = { route: "" }
+) => {
+	const uiWithProviders = (
+		<MemoryRouter initialEntries={[route]}>
+			<ThemeProvider>{ui}</ThemeProvider>
+		</MemoryRouter>
+	);
+
+	return render(uiWithProviders, options);
+};
 
 export * from "@testing-library/react";
 

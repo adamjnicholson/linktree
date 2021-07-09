@@ -34,7 +34,15 @@ const MenuLink = (props: Parameters<typeof NavLink>[0]) => {
 	);
 };
 
-function App() {
+export const AppProviders = ({ children }: PropsWithChildren<{}>) => {
+	return (
+		<ThemeProvider>
+			<Router>{children}</Router>
+		</ThemeProvider>
+	);
+};
+
+const App = () => {
 	return (
 		<>
 			<header className="flex flex-col items-center max-w-sm mx-auto pt-16 pb-8">
@@ -42,46 +50,42 @@ function App() {
 				<h1 className="mt-2 leading-relaxed">@yourname</h1>
 			</header>
 			<main className="flex flex-col max-w-sm mx-auto">
-				<ThemeProvider>
-					<Router>
-						<nav className="mb-8">
-							<ul className="flex justify-center">
-								<MenuItem>
-									<MenuLink to="/" exact>
-										Home
-									</MenuLink>
-								</MenuItem>
-								<MenuItem>
-									<MenuLink to="/shows" exact>
-										Shows
-									</MenuLink>
-								</MenuItem>
-								<MenuItem>
-									<MenuLink to="/music" exact>
-										Music
-									</MenuLink>
-								</MenuItem>
-							</ul>
-						</nav>
-						<Switch>
-							<Route path="/" exact>
-								<Classic />
-							</Route>
-							<Route path="/shows" exact>
-								<Shows />
-							</Route>
-							<Route path="/music" exact>
-								<Music />
-							</Route>
-						</Switch>
-					</Router>
-				</ThemeProvider>
+				<nav className="mb-8">
+					<ul className="flex justify-center">
+						<MenuItem>
+							<MenuLink to="/" exact>
+								Home
+							</MenuLink>
+						</MenuItem>
+						<MenuItem>
+							<MenuLink to="/shows" exact>
+								Shows
+							</MenuLink>
+						</MenuItem>
+						<MenuItem>
+							<MenuLink to="/music" exact>
+								Music
+							</MenuLink>
+						</MenuItem>
+					</ul>
+				</nav>
+				<Switch>
+					<Route path="/" exact>
+						<Classic />
+					</Route>
+					<Route path="/shows" exact>
+						<Shows />
+					</Route>
+					<Route path="/music" exact>
+						<Music />
+					</Route>
+				</Switch>
 			</main>
 			<footer className="flex justify-center max-w-sm mx-auto pt-32 pb-16">
 				<img src={linktreeLogo} alt="linktree logo" />
 			</footer>
 		</>
 	);
-}
+};
 
 export default App;
