@@ -13,6 +13,7 @@ import ArrowIcon from "../assets/icons/arrow.svg";
 import PlayIcon from "../assets/icons/play.svg";
 
 import ThemeBox from "../lib/ThemeBox";
+import { Dialog, DialogButton, DialogContent } from "../lib/Modal";
 
 const platformIcons = {
 	spotify: SpotifyLogo,
@@ -65,9 +66,19 @@ const Music = () => {
 							<div className="bg-gray-100 px-4 rounded-b-lg max-h-96 overflow-y-scroll">
 								<div className="flex items-center py-4">
 									<div className="w-16 h-16 bg-gray-500 mr-2"></div>
-									<button className="w-8 h-8 flex justify-center items-center bg-green-400 rounded-full">
-										<img src={PlayIcon} alt="play icon" />
-									</button>
+									<Dialog>
+										<DialogButton>
+											<button className="w-8 h-8 flex justify-center items-center bg-green-400 rounded-full">
+												<img
+													src={PlayIcon}
+													alt="play icon"
+												/>
+											</button>
+										</DialogButton>
+										<DialogContent>
+											<div>Music Player</div>
+										</DialogContent>
+									</Dialog>
 								</div>
 								{link.links.map((platform) => {
 									return (
